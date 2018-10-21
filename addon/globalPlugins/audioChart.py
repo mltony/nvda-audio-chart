@@ -23,9 +23,8 @@ import tones
 import ui
 import wx
 
-#addonHandler.initTranslation()
+addonHandler.initTranslation()
 
-    
 def initConfiguration():
     confspec = {
         "min_value" : "float( default=0)",
@@ -36,7 +35,6 @@ def initConfiguration():
 initConfiguration()
 
 
-    
 beep_duration = 5
 beep_volume = 50 # percent
 mid_pitch = speech.IDT_BASE_FREQUENCY
@@ -119,11 +117,14 @@ class CalibrationDialog(wx.Dialog):
             self.maxEdit.SetFocus()
             ui.message(_("Invalid max value."))
             raise RuntimeError("Invalid max value")
+        if not (min_value < max_value):
+            ui.message(_("MIn value should be less than max value."))
+            raise RuntimeError("min_value should be less than max_value")
 
             
 def playAsync(values):
     wx.CallAfter(play, values)
-            
+
 def play(values):
     pitches = map(value_to_pitch, values)
     n = len(pitches)
@@ -141,6 +142,7 @@ def play(values):
 
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
+    scriptCategory = _("AudioChart")
     def script_audioChart(self, gesture):
         """Plot audio chart."""
         count=scriptHandler.getLastScriptRepeatCount()
