@@ -86,7 +86,8 @@ class CalibrationDialog(wx.Dialog):
         self.Bind(wx.EVT_BUTTON, self.onCalibrate, self.calibrateButton)
 
     def onSonify(self, evt):
-        self.validate()
+        if not self.validate():
+            return
         self.saveSettings()
         self.Destroy()
         play(self.values)
@@ -108,7 +109,7 @@ class CalibrationDialog(wx.Dialog):
         except:
             self.minEdit.SetFocus()
             ui.message(_("Invalid min value."))
-            raise RuntimeError("Invalid min value")
+            return False
         try:
             max_value = self.maxEdit.Value
             assert(not math.isnan(max_value))
@@ -116,10 +117,10 @@ class CalibrationDialog(wx.Dialog):
         except:
             self.maxEdit.SetFocus()
             ui.message(_("Invalid max value."))
-            raise RuntimeError("Invalid max value")
+            return False
         if not (min_value < max_value):
             ui.message(_("MIn value should be less than max value."))
-            raise RuntimeError("min_value should be less than max_value")
+            return False
 
             
 def playAsync(values):
