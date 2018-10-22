@@ -207,5 +207,5 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         
         
     __gestures = {
-        "kb:NVDA+A": "audioChart",
+        "kb:NVDA+Shift+A": "audioChart",
     }
