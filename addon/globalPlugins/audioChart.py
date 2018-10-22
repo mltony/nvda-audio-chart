@@ -64,21 +64,29 @@ def value_to_pitch(value):
     
 class CalibrationDialog(wx.Dialog):
     def __init__(self, parent, values):
-        super(CalibrationDialog, self).__init__(parent, title=_("AudioChart calibration"))
+        # Translators: Title of calibration dialog
+        title_string = _("AudioChart calibration")
+        super(CalibrationDialog, self).__init__(parent, title=title_string)
         self.values = values
         mainSizer = wx.BoxSizer(wx.VERTICAL)
         sHelper = gui.guiHelper.BoxSizerHelper(self, orientation=wx.VERTICAL)
         
-        minCtrl = gui.guiHelper.LabeledControlHelper(self, _("Min value"), wx.TextCtrl)
+        # Translators: Label for min value edit box
+        minCtrlLabel = _("Min value")
+        minCtrl = gui.guiHelper.LabeledControlHelper(self, minCtrlLabel, wx.TextCtrl)
         self.minEdit = minCtrl.control
         self.minEdit.Value = str(config.conf["audiochart"]["min_value"])
 
-        maxCtrl = gui.guiHelper.LabeledControlHelper(self, _("Max value"), wx.TextCtrl)
+        # Translators: Label for max value edit box
+        maxCtrlLabel = _("Max value")
+        maxCtrl = gui.guiHelper.LabeledControlHelper(self, maxCtrlLabel, wx.TextCtrl)
         self.maxEdit = maxCtrl.control
         self.maxEdit.Value = str(config.conf["audiochart"]["max_value"])
 
         bHelper = sHelper.addItem(guiHelper.ButtonHelper(orientation=wx.HORIZONTAL))
-        self.calibrateButton = bHelper.addButton(self, label=_("&Calibrate"))
+        # Translators: Calibrate button text
+        calibrateLabel = _("&Calibrate")
+        self.calibrateButton = bHelper.addButton(self, label=calibrateLabel)
         self.Bind(wx.EVT_BUTTON, self.onCalibrate, self.calibrateButton)
         
         sHelper.addDialogDismissButtons(self.CreateButtonSizer(wx.OK|wx.CANCEL))
@@ -112,6 +120,7 @@ class CalibrationDialog(wx.Dialog):
             assert(not math.isinf(min_value))
         except:
             self.minEdit.SetFocus()
+            # Translators: message when min value is invalid
             ui.message(_("Invalid min value."))
             return False
         try:
@@ -120,10 +129,12 @@ class CalibrationDialog(wx.Dialog):
             assert(not math.isinf(max_value))
         except:
             self.maxEdit.SetFocus()
+            # Translators: message when max value is invalid
             ui.message(_("Invalid max value."))
             return False
         if not (min_value < max_value):
-            ui.message(_("MIn value should be less than max value."))
+            # Translators: message when min value is greater than max value
+            ui.message(_("Min value should be less than max value."))
             return False
         return True
 
@@ -169,6 +180,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         if isinstance(focus, excel.ExcelSelection):
             colspan = focus._get_colSpan()
             if colspan != 1:
+                # Translators: Message when more than one column is selected
                 ui.message(_("Please select only a single column."))
                 return None
             excelValues = focus.excelRangeObject.Value()
@@ -179,6 +191,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 except:
                     continue
             if len(values) == 0:
+                # Translators: message when no numeric cells found within selected range
                 ui.message(_("No numeric values found within the selection."))
                 return None
         elif isinstance(focus, excel.ExcelCell):
@@ -190,10 +203,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 except:
                     break
             if len(values) == 0:
+                # Translators: message when currently selected cell doesn't contain a numeric value
                 ui.message(_("Please select a numeric value - the beginning of time series."))
                 return None
         else:
-            ui.message(_("Audio chart is only possible in Excel."))
+            # Translators: message when called not in Excel worksheet
+            ui.message(_("Audio chart currently only works inMicrosoft Excel."))
             return None
         return values
         
