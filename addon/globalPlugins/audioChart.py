@@ -149,11 +149,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         if count >= 2:
             return
         values = self.collectValues()
+        if values is None:
+            return
         if count == 0:
-            values = self.collectValues()
             playAsync(values)
         else:
-            values = self.collectValues()
             tones.player.stop()
             self.showCalibrationDialog(values)
         
@@ -164,7 +164,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             colspan = focus._get_colSpan()
             if colspan != 1:
                 ui.message(_("Please select only a single column."))
-                return
+                return None
             excelValues = focus.excelRangeObject.Value()
             for evTuple in excelValues:
                 try:
@@ -172,6 +172,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                     values.append(float(ev))
                 except:
                     continue
+            if len(values) == 0:
+                ui.message(_("No numeric values found within the selection."))
+                return None
         elif isinstance(focus, excel.ExcelCell):
             excelValues = focus.excelCellObject.Range("A1","A%d" % max_rows).Value()
             for evTuple in excelValues:
@@ -180,9 +183,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                     values.append(float(ev))
                 except:
                     break
+            if len(values) == 0:
+                ui.message(_("Please select a numeric value - the beginning of time series."))
+                return None
         else:
             ui.message(_("Audio chart is only possible in Excel."))
-            raise RuntimeError("Not in Excel spreadsheet.")
+            return None
         return values
         
     def collectAndPlay(self):
