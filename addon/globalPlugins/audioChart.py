@@ -78,19 +78,23 @@ class CalibrationDialog(wx.Dialog):
         self.maxEdit.Value = str(config.conf["audiochart"]["max_value"])
 
         bHelper = sHelper.addItem(guiHelper.ButtonHelper(orientation=wx.HORIZONTAL))
-        self.sonifyButton = bHelper.addButton(self, label=_("&Sonify"))
-        self.sonifyButton.SetDefault()
-        self.Bind(wx.EVT_BUTTON, self.onSonify, self.sonifyButton)
-
         self.calibrateButton = bHelper.addButton(self, label=_("&Calibrate"))
         self.Bind(wx.EVT_BUTTON, self.onCalibrate, self.calibrateButton)
+        
+        sHelper.addDialogDismissButtons(self.CreateButtonSizer(wx.OK|wx.CANCEL))
+        self.Bind(wx.EVT_BUTTON, self.onOk, id=wx.ID_OK)
+        mainSizer.Add(sHelper.sizer, border=gui.guiHelper.BORDER_FOR_DIALOGS, flag=wx.ALL)
+        self.Sizer = mainSizer
+        mainSizer.Fit(self)
+        #self.calibrateButton.SetFocus()
+        self.CentreOnScreen()
 
-    def onSonify(self, evt):
+    def onOk(self, evt):
         if not self.validate():
             return
         self.saveSettings()
         self.Destroy()
-        play(self.values)
+        playAsync(self.values)
         
     def onCalibrate(self, evt):
         self.minEdit.Value = str(min(self.values))
@@ -121,6 +125,7 @@ class CalibrationDialog(wx.Dialog):
         if not (min_value < max_value):
             ui.message(_("MIn value should be less than max value."))
             return False
+        return True
 
             
 def playAsync(values):
