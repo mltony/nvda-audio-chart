@@ -7,8 +7,10 @@ TBD
 Select a cell or a column of cells containing time series in Microsoft Excel.
 Keystrokes:
 
-* NVDA+Shift+A: Play audio chart.
-* NVDA+Shift+A twice quickly: Show calibration dialog window.
+* NVDA+A: Play audio chart.
+* NVDA+A twice quickly: Show calibration dialog window.
+
+In laptop layout, press NVDA+Control+Shift+A instead.
 
 ## Source code
 Source code is available at <http://github.com/mltony/nvda-audio-chart>.
