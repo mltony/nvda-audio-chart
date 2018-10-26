@@ -17,6 +17,7 @@ from NVDAObjects.window import excel
 import operator
 import re 
 import scriptHandler
+from scriptHandler import script
 import speech
 import struct
 import tones
@@ -143,7 +144,7 @@ def playAsync(values):
     wx.CallAfter(play, values)
 
 def play(values):
-    pitches = map(value_to_pitch, values)
+    pitches = list(map(value_to_pitch, values))
     n = len(pitches)
     beepBufSizes = [NVDAHelper.generateBeep(None, pitches[i], beep_duration, beep_volume, beep_volume) for i in range(n)]
     bufSize = sum(beepBufSizes)
@@ -160,8 +161,9 @@ def play(values):
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
     scriptCategory = _("AudioChart")
+    
+    @script(description='Plot audio chart.', gestures=['kb:nvda+a', 'kb(laptop):nvda+ctrl+shift+a'])
     def script_audioChart(self, gesture):
-        """Plot audio chart."""
         count=scriptHandler.getLastScriptRepeatCount()
         if count >= 2:
             return
@@ -179,17 +181,18 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         values = []
         if isinstance(focus, excel.ExcelSelection):
             colspan = focus._get_colSpan()
-            if colspan != 1:
-                # Translators: Message when more than one column is selected
-                ui.message(_("Please select only a single column."))
+            rowspan = focus._get_rowSpan()
+            if (colspan != 1) and (rowspan != 1):
+                # Translators: Message when more than one column and more than 1 row is selected
+                ui.message(_("Please select only a single column or a single row."))
                 return None
             excelValues = focus.excelRangeObject.Value()
             for evTuple in excelValues:
-                try:
-                    ev = evTuple[0]
-                    values.append(float(ev))
-                except:
-                    continue
+                for ev in evTuple:
+                    try:
+                        values.append(float(ev))
+                    except:
+                        continue
             if len(values) == 0:
                 # Translators: message when no numeric cells found within selected range
                 ui.message(_("No numeric values found within the selection."))
@@ -224,9 +227,3 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         
     def showCalibrationDialog(self, values):
         wx.CallAfter(self.popupCalibrationDialog, values)
-        
-        
-    __gestures = {
-        "kb(desktop):NVDA+A": "audioChart",
-        "kb(laptop):NVDA+Control+Shift+A": "audioChart",
-    }
