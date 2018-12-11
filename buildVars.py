@@ -19,7 +19,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description" : _("""AudioChart add-on for NVDA allows you to play excel time series as a continuous sound."""),
 	# version
-	"addon_version" : "1.0",
+	"addon_version" : "1.1dev",
 	# Author(s)
 	"addon_author" : u"Tony Malykh <anton.malykh@gmail.com>",
 	# URL for the add-on documentation support
