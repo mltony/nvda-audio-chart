@@ -162,7 +162,8 @@ def play(values):
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
     scriptCategory = _("AudioChart")
     
-    @script(description='Plot audio chart.', gestures=['kb:nvda+a', 'kb(laptop):nvda+ctrl+shift+a'])
+    @script(description='Plot audio chart.', gestures=['kb(desktop):nvda+a', 
+        'kb(laptop):nvda+control+shift+a'])
     def script_audioChart(self, gesture):
         count=scriptHandler.getLastScriptRepeatCount()
         if count >= 2:
