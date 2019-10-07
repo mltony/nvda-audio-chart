@@ -117,6 +117,7 @@ class CalibrationDialog(wx.Dialog):
     def validate(self):
         try:
             min_value = self.minEdit.Value
+            min_value = float(min_value)
             assert(not math.isnan(min_value))
             assert(not math.isinf(min_value))
         except:
@@ -126,6 +127,7 @@ class CalibrationDialog(wx.Dialog):
             return False
         try:
             max_value = self.maxEdit.Value
+            max_value = float(max_value)
             assert(not math.isnan(max_value))
             assert(not math.isinf(max_value))
         except:
