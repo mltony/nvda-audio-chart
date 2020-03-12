@@ -1,0 +1,36 @@
+# Brazilian Portuguese translation of audioChart.
+# Copyright (C) 2020 NVDA Contributors.
+# This file is distributed under the same license as the NVDA package.
+# Ângelo Abrantes <ampa4374@gmail.com>, 2018.
+# Tiago Melo Casal <tcasal@intervox.nce.ufrj.br>, 2020.
+# Cleverson Casarin Uliana <clever97@gmail.com>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: audioChart\n"
+"Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
+"POT-Creation-Date: 2020-01-03 01:05+1000\n"
+"PO-Revision-Date: 2020-03-08 19:50-0300\n"
+"Last-Translator: Cleverson Casarin Uliana <clever97@gmail.com>\n"
+"Language-Team: NVDA Brazilian Portuguese translation team (Equipe de "
+"tradução do NVDA para Português Brasileiro) <clever97@gmail.com>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.11\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown on installation and add-on information.
+msgid "AudioChart"
+msgstr "Audiográfico"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+msgid ""
+"AudioChart add-on for NVDA allows you to play excel time series as a "
+"continuous sound."
+msgstr ""
+"O complemento Audiográfico para NVDA permite reproduzir séries temporais do "
+"Excel como um som contínuo."
