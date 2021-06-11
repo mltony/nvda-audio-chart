@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: audioChart 1.0\n"
 "Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
 "POT-Creation-Date: 2018-11-23 01:02+1000\n"
-"PO-Revision-Date: 2018-12-27 11:25+0100\n"
+"PO-Revision-Date: 2021-06-02 02:19+0200\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Bernd Dorer <bdorer@mailbox.org>\n"
+"Last-Translator: René Linke <rene.linke@hamburg.de>\n"
 "Language-Team: \n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on to be shown on installation and add-on information.
 msgid "AudioChart"
-msgstr "AudioBild"
+msgstr "Audiobild"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
@@ -28,5 +28,5 @@ msgid ""
 "AudioChart add-on for NVDA allows you to play excel time series as a "
 "continuous sound."
 msgstr ""
-"Die Erweiterung AudioBild für NVDA ermöglicht die Wiedergabe von "
-"Excel-Zeitreihen als Audiobild."
+"Mit dieser Erweiterung für NVDA können Sie Zeitreihen in Microsoft "
+"Excel als Dauerton abspielen."
