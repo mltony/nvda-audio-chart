@@ -1,8 +1,8 @@
 # AudioChart addon for NVDA
 AudioChart add-on for NVDA allows you to play excel time series as a continuous sound.
 ## Download
-Current stable release: 
-[AudioChart v1.0](https://github.com/mltony/nvda-audio-chart/releases/download/v1.0/audioChart-1.0.nvda-addon).
+
+[Current stable release](https://github.com/mltony/nvda-audio-chart/releases/latest/download/audioChart.nvda-addon).
 
 ## Usage
 Select a cell or a column of cells containing time series in Microsoft Excel.
@@ -16,5 +16,3 @@ In laptop layout, press NVDA+Control+Shift+A instead.
 ## Source code
 Source code is available at <http://github.com/mltony/nvda-audio-chart>.
 
-## Feedback
-If you have any questions or comments, or if you find this addon useful, please don't hesitate to contact me at anton.malykh *at* gmail.com.
