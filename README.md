@@ -16,3 +16,6 @@ In laptop layout, press NVDA+Control+Shift+A instead.
 ## Source code
 Source code is available at <http://github.com/mltony/nvda-audio-chart>.
 
+
+
+
